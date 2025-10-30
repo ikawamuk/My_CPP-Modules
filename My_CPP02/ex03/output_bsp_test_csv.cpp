@@ -3,7 +3,7 @@
 
 bool bsp( Point const a, Point const b, Point const c, Point const point);
 
-void	output_bsp_test(const Point& a, const Point& b, const Point& c, std::ofstream& ofs)
+void	output_bsp_test_csv(const Point& a, const Point& b, const Point& c, std::ofstream& ofs)
 {
 	const Fixed	MIN_X = Fixed::min(a.get_x(), Fixed::min(b.get_x(), c.get_x()));
 	const Fixed	MIN_Y = Fixed::min(a.get_y(), Fixed::min(b.get_y(), c.get_y()));
