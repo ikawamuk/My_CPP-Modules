@@ -56,7 +56,7 @@ void	ClapTrap::attack(const std::string& target)
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	long prev_hp = hit_points_;
-	hit_points_ = hit_points_ > amount ? static_cast<long>(hit_points_) - static_cast<long>(amount) : 0;
+	hit_points_ = hit_points_ > static_cast<long>(amount) ? static_cast<long>(hit_points_) - static_cast<long>(amount) : 0;
 	std::cout << YELLOW;
 	std::cout << name_ << " takes "<< prev_hp - hit_points_<< " points of damage! ";
 	std::cout << "Current HP: " << hit_points_ << std::endl;
