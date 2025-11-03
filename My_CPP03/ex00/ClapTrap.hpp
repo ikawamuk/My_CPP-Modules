@@ -12,7 +12,10 @@ static const char* const BLUE   = "\x1b[34m";
 class ClapTrap
 {
 	public:
-		ClapTrap(const std::string& name = "John TraDefaulta", int hit_points = 10, int energy_points = 10, int attack_damage = 0);
+		ClapTrap(const std::string& name = "John TraDefaulta", \
+				unsigned int hit_points = 10, \
+				unsigned int energy_points = 10, \
+				unsigned int attack_damage = 0);
 		ClapTrap(const ClapTrap& other);
 		ClapTrap&	operator=(const ClapTrap& rhs);
 		virtual ~ClapTrap();
@@ -22,10 +25,10 @@ class ClapTrap
 
 	private:
 		std::string	name_;
-		int			hit_points_;
-		int			energy_points_;
-		int			attack_damage_;
-		bool		can_take_action(void) const;
+		unsigned int	hit_points_;
+		unsigned int	energy_points_;
+		unsigned int	attack_damage_;
+		bool			can_take_action(void) const;
 };
 
 #endif

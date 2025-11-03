@@ -2,7 +2,7 @@
 #include <iostream>
 #include <limits>
 
-ClapTrap::ClapTrap(const std::string& name, int hit_points, int energy_points, int attack_damage)
+ClapTrap::ClapTrap(const std::string& name, unsigned int hit_points, unsigned int energy_points, unsigned int attack_damage)
 :name_(name)
 ,hit_points_(hit_points)
 ,energy_points_(energy_points)
@@ -55,8 +55,8 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	int prev_hp = hit_points_;
-	hit_points_ = static_cast<unsigned int>(hit_points_) > amount ? hit_points_ - amount : 0;
+	long prev_hp = hit_points_;
+	hit_points_ = hit_points_ > amount ? static_cast<long>(hit_points_) - static_cast<long>(amount) : 0;
 	std::cout << YELLOW;
 	std::cout << name_ << " takes "<< prev_hp - hit_points_<< " points of damage! ";
 	std::cout << "Current HP: " << hit_points_ << std::endl;
@@ -65,13 +65,13 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	unsigned long	CASTED_INT_MAX = static_cast<unsigned long>(std::numeric_limits<int>::max());
+	unsigned long	CASTED_INT_MAX = static_cast<unsigned long>(std::numeric_limits<unsigned int>::max());
 	unsigned long	new_hp = static_cast<unsigned long>(hit_points_) + static_cast<unsigned long>(amount);
 
 	if (!can_take_action())
 		return ;
 	energy_points_--;
-	hit_points_ = new_hp < CASTED_INT_MAX ? static_cast<int>(new_hp) : std::numeric_limits<int>::max();
+	hit_points_ = new_hp < CASTED_INT_MAX ? static_cast<unsigned int>(new_hp) : std::numeric_limits<unsigned int>::max();
 	std::cout << YELLOW;
 	std::cout << name_ << " is repaired "<< amount << " points. ";
 	std::cout << "Current HP: " << hit_points_ << std::endl;
