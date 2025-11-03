@@ -20,7 +20,10 @@ Dog::Dog(const Dog& other)
 Dog&	Dog::operator=(const Dog& rhs)
 {
 	if (this != &rhs)
+	{
 		AAnimal::operator=(rhs);
+		brain_ = rhs.brain_;
+	}
 	return (*this);
 }
 

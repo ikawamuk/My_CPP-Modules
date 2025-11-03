@@ -20,7 +20,10 @@ Cat::Cat(const Cat& other)
 Cat&	Cat::operator=(const Cat& rhs)
 {
 	if (this != &rhs)
+	{
 		AAnimal::operator=(rhs);
+		brain_ = rhs.brain_;
+	}
 	return (*this);
 }
 
