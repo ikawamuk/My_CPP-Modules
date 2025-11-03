@@ -20,7 +20,10 @@ Dog::Dog(const Dog& other)
 Dog&	Dog::operator=(const Dog& rhs)
 {
 	if (this != &rhs)
+	{
 		Animal::operator=(rhs);
+		brain_ = rhs.brain_;
+	}
 	return (*this);
 }
 
@@ -35,4 +38,9 @@ void	Dog::makeSound(void) const
 {
 	std::cout << "bow-wow" << std::endl;
 	return ;
+}
+
+Brain&	Dog::brain(void)
+{
+	return (*brain_);
 }

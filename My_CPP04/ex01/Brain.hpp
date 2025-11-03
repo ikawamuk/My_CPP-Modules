@@ -14,6 +14,11 @@ class Brain
 	private:
 		static const int	IDEAS_SIZE = 100;
 		std::string			ideas_[IDEAS_SIZE];
+	
+	public:
+		const std::string	(&ideas(void) const)[IDEAS_SIZE];
+		void				set_ideas(const std::string* ideas);
+		void				set_an_idea(const std::string idea, int index);
 };
 
 #endif

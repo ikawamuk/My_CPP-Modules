@@ -20,7 +20,10 @@ Cat::Cat(const Cat& other)
 Cat&	Cat::operator=(const Cat& rhs)
 {
 	if (this != &rhs)
+	{
 		Animal::operator=(rhs);
+		brain_ = rhs.brain_;
+	}
 	return (*this);
 }
 
@@ -35,4 +38,9 @@ void	Cat::makeSound(void) const
 {
 	std::cout << "meow" << std::endl;
 	return ;
+}
+
+Brain&	Cat::brain(void)
+{
+	return (*brain_);
 }
