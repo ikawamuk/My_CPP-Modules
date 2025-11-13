@@ -33,13 +33,3 @@ EnergyPoints&	EnergyPoints::operator=(const EnergyPoints& rhs)
 		NumericParameter::operator=(rhs);
 	return (*this);
 }
-
-EnergyPoints::operator	bool(void) const
-{
-	return (this->value());
-}
-
-bool	EnergyPoints::operator!(void) const
-{
-	return (!this->value());
-}

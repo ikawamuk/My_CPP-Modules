@@ -1,23 +1,24 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
-ScavTrap::ScavTrap(const std::string& name,int hit_points, int energy_points, int attack_damage)
-:ClapTrap(name, hit_points, energy_points, attack_damage)
+ScavTrap::ScavTrap(const Name& name)
+:ClapTrap(name, HitPoints(init_hit_points()), EnergyPoints(init_energy_points()), AttackDamage(init_attack_damage()))
 {
-	std::cout << GREEN << "the Scav default constructor called!!" << std::endl;
-	return ;
+	std::cout << BLUE;
+	std::cout << "Scav parameterized constructorcalled! (name)";
+	std::cout << RESET << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other)
 :ClapTrap(other)
 {
-	std::cout << GREEN << "the Scav copy constructor called!!" << std::endl;
-	return ;
+	std::cout << BLUE;
+	std::cout << "Scav copy constructor called!";
+	std::cout << RESET << std::endl;
 }
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs)
 {
-	std::cout << RESET << "the Scav assignment operator called!!" << std::endl;
 	if (this != &rhs)
 		ClapTrap::operator=(rhs);
 	return (*this);
@@ -25,24 +26,51 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs)
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << BLUE << "the Scav destructor called!!" << std::endl;
-	return ;
+	std::cout << BLACK;
+	std::cout << "Scav destructor called!";
+	std::cout << RESET << std::endl;
 }
 
 void	ScavTrap::attack(const std::string& target)
 {
 	if (!can_take_action())
 		return ;
-	set_energy_points(energy_points() - 1);
+	ClapTrap::attack(target);
 	std::cout << YELLOW;
-	std::cout << "ScavTrap "<< name() \
-			<< " attacks "<< target \
-			<< ", causing "<< attack_damage() << " points of damage!" << std::endl;
-	return ;
+	std::cout << name() << " scavenged an item!";
+	std::cout << RESET << std::endl;
 }
 
 void	ScavTrap::guardGate(void)
 {
 	std::cout << MAGENTA;
-	std::cout << "ScavTrap " << name() << " is now in Gate keeper mode!!" << std::endl;
+	std::cout << class_name() << " " << name() << " is in gatekeeper mode now!";
+	std::cout << RESET << std::endl;
+}
+
+ScavTrap::ScavTrap(void)
+{
+	std::cout << BLUE;
+	std::cout << "Scav default constructor called!" << std::endl;
+	std::cout << RESET;
+}
+
+unsigned int	ScavTrap::init_hit_points(void)
+{
+	return (100);
+}
+
+unsigned int	ScavTrap::init_energy_points(void)
+{
+	return (50);
+}
+
+unsigned int	ScavTrap::init_attack_damage(void)
+{
+	return (20);
+}
+
+const char*	ScavTrap::class_name(void) const
+{
+	return ("ScavTrap");
 }

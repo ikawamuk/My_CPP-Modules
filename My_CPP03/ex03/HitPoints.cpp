@@ -33,13 +33,3 @@ HitPoints&	HitPoints::operator=(const HitPoints& rhs)
 		NumericParameter::operator=(rhs);
 	return (*this);
 }
-
-HitPoints::operator	bool(void) const
-{
-	return (this->value());
-}
-
-bool	HitPoints::operator!(void) const
-{
-	return (!this->value());
-}

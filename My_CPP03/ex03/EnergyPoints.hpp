@@ -15,8 +15,6 @@ class EnergyPoints: public NumericParameter
 		EnergyPoints(const EnergyPoints& other);
 		~EnergyPoints();
 		EnergyPoints&	operator=(const EnergyPoints& rhs);
-		operator		bool(void) const;
-		bool			operator!(void) const;
 		using NumericParameter::value;
 
 	private:

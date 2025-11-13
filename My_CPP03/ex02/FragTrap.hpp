@@ -3,17 +3,22 @@
 
 #include "ClapTrap.hpp"
 
-static const char* const CYAN = "\x1b[36m";
-
 class FragTrap: public ClapTrap
 {
 	public:
-		FragTrap(const std::string& name = "John Fravolta", int hit_points = 100, int energy_points = 100, int attack_damage = 30);
+		FragTrap(const Name& name);
 		FragTrap(const FragTrap& other);
 		FragTrap&	operator=(const FragTrap& rhs);
-		virtual ~FragTrap();
+		~FragTrap();
 		void	attack(const std::string& target);
-		void	 highFivesGuys(void);
+		void	highFivesGuys(void);
+
+	protected:
+		FragTrap(void);
+		static unsigned int	init_hit_points(void);
+		static unsigned int	init_energy_points(void);
+		static unsigned int	init_attack_damage(void);
+		const char*			class_name(void) const;
 };
 
 #endif

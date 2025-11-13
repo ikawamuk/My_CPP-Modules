@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/07 19:24:02 by ikawamuk          #+#    #+#              #
-#    Updated: 2025/10/31 20:53:50 by ikawamuk         ###   ########.fr        #
+#    Updated: 2025/11/12 22:45:49 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,15 @@ NAME	= main
 
 # --- SOURCES ---
 SRC_FILES	=	main.cpp \
+				test_trap.cpp \
 				ClapTrap.cpp \
+				Name.cpp \
+				NumericParameter.cpp \
+				HitPoints.cpp \
+				EnergyPoints.cpp \
+				AttackDamage.cpp \
 				ScavTrap.cpp \
+				
 
 SRCS	= $(addprefix $(SRCDIR)/,$(SRC_FILES))
 

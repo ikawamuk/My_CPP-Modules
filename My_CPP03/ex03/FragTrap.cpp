@@ -1,23 +1,24 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-FragTrap::FragTrap(const std::string& name,int hit_points, int energy_points, int attack_damage)
-:ClapTrap(name, hit_points, energy_points, attack_damage)
+FragTrap::FragTrap(const Name& name)
+:ClapTrap(name, HitPoints(init_hit_points()), EnergyPoints(init_energy_points()), AttackDamage(init_attack_damage()))
 {
-	std::cout << GREEN << "the Frag default constructor called!!" << std::endl;
-	return ;
+	std::cout << BLUE;
+	std::cout << "Frag parameterized consTructorcalled! (name)";
+	std::cout << RESET << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& other)
 :ClapTrap(other)
 {
-	std::cout << GREEN << "the Frag copy constructor called!!" << std::endl;
-	return ;
+	std::cout << BLUE;
+	std::cout << "Frag copy consTructor called!";
+	std::cout << RESET << std::endl;
 }
 
 FragTrap&	FragTrap::operator=(const FragTrap& rhs)
 {
-	std::cout << RESET << "the Frag assignment operator called!!" << std::endl;
 	if (this != &rhs)
 		ClapTrap::operator=(rhs);
 	return (*this);
@@ -25,24 +26,51 @@ FragTrap&	FragTrap::operator=(const FragTrap& rhs)
 
 FragTrap::~FragTrap()
 {
-	std::cout << BLUE << "the Frag destructor called!!" << std::endl;
-	return ;
+	std::cout << BLACK;
+	std::cout << "Frag desTructor called!";
+	std::cout << RESET << std::endl;
 }
 
 void	FragTrap::attack(const std::string& target)
 {
 	if (!can_take_action())
 		return ;
-	set_energy_points(energy_points() - 1);
+	ClapTrap::attack(target);
 	std::cout << YELLOW;
-	std::cout << "FragTrap "<< name() \
-			<< " attacks "<< target \
-			<< ", causing "<< attack_damage() << " points of damage!" << std::endl;
-	return ;
+	std::cout << "Boom! Big explosion!";
+	std::cout << RESET << std::endl;
 }
 
 void	FragTrap::highFivesGuys(void)
 {
 	std::cout << CYAN;
-	std::cout << "FragTrap " << name() << " looks at you as if it wants to high-five!" << std::endl;
+	std::cout << class_name() << " " << name() << " is looking at you as if he wanna give you a high five!";
+	std::cout << RESET << std::endl;
+}
+
+FragTrap::FragTrap(void)
+{
+	std::cout << BLUE;
+	std::cout << "Frag default constructor called!" << std::endl;
+	std::cout << RESET;
+}
+
+unsigned int	FragTrap::init_hit_points(void)
+{
+	return (100);
+}
+
+unsigned int	FragTrap::init_energy_points(void)
+{
+	return (100);
+}
+
+unsigned int	FragTrap::init_attack_damage(void)
+{
+	return (30);
+}
+
+const char*	FragTrap::class_name(void) const
+{
+	return ("FragTrap");
 }

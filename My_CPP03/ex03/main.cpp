@@ -1,33 +1,19 @@
 #include "DiamondTrap.hpp"
-#include <iostream>
+#include "Name.hpp"
+#include <memory>
 
-static const std::string	DELIMINATER(50, '-');
-
-void	test(void)
-{
-
-	return ;
-}
-
-void	special_ability_test(void)
-{
-	std::cout << RESET << DELIMINATER <<std::endl;
-	std::cout << " special ability test " << std::endl;
-	std::cout << RESET << DELIMINATER <<std::endl;
-	{
-		DiamondTrap	hoge;
-
-		hoge.guardGate();
-		hoge.highFivesGuys();
-		hoge.whoAmI();
-	}
-	std::cout << RESET << DELIMINATER <<std::endl;
-	return ;
-}
+void	trap_test(void);
 
 int	main(void)
 {
-	test();
-	special_ability_test();
+	trap_test();
 	return (0);
+}
+
+std::auto_ptr<ClapTrap>	generate_new_trap(void)
+{
+	Name	name("Testy");
+
+	std::auto_ptr<DiamondTrap>	p = std::auto_ptr<DiamondTrap>(new DiamondTrap(name));
+	return (std::auto_ptr<ClapTrap>(p.release()));
 }

@@ -15,14 +15,10 @@ class HitPoints: public NumericParameter
 		HitPoints(const HitPoints& other);
 		~HitPoints();
 		HitPoints&	operator=(const HitPoints& rhs);
-		operator	bool(void) const;
-		bool		operator!(void) const;
 		using NumericParameter::value;
 
 	private:
 		using NumericParameter::operator--;
 };
-
-long	operator-(const NumericParameter& lhs, const NumericParameter& rhs);
 
 #endif

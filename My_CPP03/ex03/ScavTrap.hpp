@@ -3,17 +3,22 @@
 
 #include "ClapTrap.hpp"
 
-static const char* const MAGENTA = "\x1b[35m";
-
 class ScavTrap: virtual public ClapTrap
 {
 	public:
-		ScavTrap(const std::string& name = "John Scavolta", int hit_points = 100, int energy_points = 50, int attack_damage = 20);
+		ScavTrap(const Name& name);
 		ScavTrap(const ScavTrap& other);
 		ScavTrap&	operator=(const ScavTrap& rhs);
-		virtual ~ScavTrap();
+		~ScavTrap();
 		void	attack(const std::string& target);
 		void	guardGate(void);
+
+	protected:
+		ScavTrap(void);
+		static unsigned int	init_hit_points(void);
+		static unsigned int	init_energy_points(void);
+		static unsigned int	init_attack_damage(void);
+		const char*			class_name(void) const;
 };
 
 #endif

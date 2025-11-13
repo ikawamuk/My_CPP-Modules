@@ -1,0 +1,85 @@
+#include "ClapTrap.hpp"
+#include <iostream>
+#include <sstream>
+#include <memory>
+
+std::auto_ptr<ClapTrap>	generate_new_trap(void);
+
+// for ClapTrap
+
+void	attack_test(void)
+{
+	std::cout << "attack test" << std::endl;
+	std::auto_ptr<ClapTrap> trap = generate_new_trap();
+	trap->attack("Target1");
+	trap->attack("Target2");
+}
+
+void	take_damage_test(void)
+{
+	std::cout << "takeDamage test1" << std::endl;
+	std::auto_ptr<ClapTrap> trap = generate_new_trap();
+	trap->takeDamage(9);
+	trap->attack("Target1");
+	trap->takeDamage(1);
+	trap->attack("Target2");
+}
+
+void	take_zero_and_over_damage_test(void)
+{
+	std::cout << "take zero and over damage test" << std::endl;
+	std::auto_ptr<ClapTrap> trap = generate_new_trap();
+	trap->takeDamage(0);
+	trap->attack("Target1");
+	trap->takeDamage(15);
+	trap->attack("Target2");
+}
+
+void	be_repaired_test(void)
+{
+	std::cout << "beRepaired test" << std::endl;
+	std::auto_ptr<ClapTrap> trap = generate_new_trap();
+	trap->beRepaired(1);
+	trap->takeDamage(10);
+	trap->attack("Target1");
+	trap->takeDamage(1);
+	trap->attack("Target2");
+}
+
+void	energy_points_test(void)
+{
+	std::cout << "energy points tests" << std::endl;
+	std::auto_ptr<ClapTrap> trap = generate_new_trap();
+	for (int i = 0; i < 13; i++)
+	{
+		std::ostringstream oss;
+		oss << "Target" << i;
+		trap->attack(oss.str());
+	}
+	return ;
+}
+
+void	any_case_what_you_want(void)
+{
+	std::cout << "Any case what you want?" << std::endl;
+	// std::auto_ptr<ClapTrap> trap = generate_new_trap();
+
+	return ;
+}
+
+void	trap_test(void)
+{
+	
+	attack_test();
+	std::cout << std::endl;
+	take_damage_test();
+	std::cout << std::endl;
+	take_zero_and_over_damage_test();
+	std::cout << std::endl;
+	be_repaired_test();
+	std::cout << std::endl;
+	energy_points_test();
+	std::cout << std::endl;
+	any_case_what_you_want();
+	return ;
+}
