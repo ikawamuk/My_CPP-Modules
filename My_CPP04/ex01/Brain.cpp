@@ -1,54 +1,57 @@
 #include "Brain.hpp"
 #include <iostream>
-#include <exception>
 
-Brain::Brain(void)
+Brain::Brain(const std::string& idea)
 {
-	std::cout << "the Brain default constructor called!!" << std::endl;
+	std::cout << BLUE;
+	std::cout << "Brain default constructor called!" << std::endl;
+	std::cout << RESET;
 	for (int i = 0; i < IDEAS_SIZE; i++)
-		ideas_[i] = "no idea";
+		ideas_[i] = idea;
+	newest_idea_index = IDEAS_SIZE - 1;
 }
 
 Brain::Brain(const Brain& other)
 {
-	std::cout << "the Brain copy constructor called!!" << std::endl;
-	for (int i = 0; i < IDEAS_SIZE; i++)
+	std::cout << BLUE;
+	std::cout << "Brain copy constructor called!" << std::endl;
+	std::cout << RESET;
+	for (int i = 0; i < IDEAS_SIZE; ++i)
 		ideas_[i] = other.ideas_[i];
-	return ;
+	newest_idea_index = other.newest_idea_index;
 }
 
 Brain&	Brain::operator=(const Brain& rhs)
 {
 	if (this != &rhs)
 	{
-		for (int i = 0; i < IDEAS_SIZE; i++)
+		for (int i = 0; i < IDEAS_SIZE; ++i)
 			ideas_[i] = rhs.ideas_[i];
+		newest_idea_index =  rhs.newest_idea_index;
 	}
 	return (*this);
 }
 
+const std::string&	Brain::operator[](std::size_t i) const
+{
+	return (ideas_[i]);
+}
+
 Brain::~Brain()
 {
-	std::cout << "the Brain destructor called!!" << std::endl;
+	std::cout << BLUE;
+	std::cout << "Brain destructor called!" << std::endl;
+	std::cout << RESET;
+}
+
+void	Brain::add_idea(const std::string& idea)
+{
+	newest_idea_index = (newest_idea_index + 1) % IDEAS_SIZE;
+	ideas_[newest_idea_index] = idea;
 	return ;
 }
 
-const std::string	(&Brain::ideas(void) const)[IDEAS_SIZE]
+const std::string	Brain::get_newst_idea(void) const
 {
-	return (ideas_);
-}
-
-void	Brain::set_ideas(const std::string* ideas)
-{
-	for (int i = 0; i < IDEAS_SIZE; i++)
-		ideas_[i] = ideas[i];
-	return ;
-}
-
-void	Brain::set_an_idea(const std::string idea, int index)
-{
-	if (index < 0 || IDEAS_SIZE <= index)
-		throw std::out_of_range("index out of range of ideas");
-	ideas_[index] = idea;
-	return ;
+	return (ideas_[newest_idea_index]);
 }

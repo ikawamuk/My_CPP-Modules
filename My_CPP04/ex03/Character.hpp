@@ -1,17 +1,29 @@
-#ifndef ICHARACTER_HPP_
-# define ICHARACTER_HPP_
+#ifndef CHARACTER_HPP_
+# define CHARACTER_HPP_
 
-#include "AMateria.hpp"
-#include <string>
+#include "ICharacter.hpp"
+#include "Floor.hpp"
 
-class ICharacter
+class Character: public ICharacter
 {
 	public:
-	virtual ~ICharacter() {}
-	virtual std::string const & getName() const = 0;
-	virtual void equip(AMateria* m) = 0;
-	virtual void unequip(int idx) = 0;
-	virtual void use(int idx, ICharacter& target) = 0;
+		explicit Character(const std::string& name);
+		Character(const Character& other);
+		Character&	operator=(const Character& rhs);
+		~Character();
+		const std::string&	getName() const;
+		void				equip(AMateria* m);
+		void				unequip(int idx);
+		void				use(int idx, ICharacter& target);
+
+	private:
+		std::string			name_;
+		static const int	SLOT_SIZE = 4;
+		AMateria			*inventory_[SLOT_SIZE];
+		static Floor		floor;
+		Character(void);
+		void	delete_inventory(void);
+		void	copy_inventory(const Character& src);
 };
 
 #endif

@@ -1,18 +1,16 @@
 #include "WrongAnimal.hpp"
 #include <iostream>
 
-WrongAnimal::WrongAnimal(const std::string& type)
-:type_(type)
+WrongAnimal::WrongAnimal(void)
+:type_("WrongAnimal")
 {
-	std::cout << "the WrongAnimal default constructor called!!" << std::endl;
-	return ;
+	std::cout << "WrongAnimal default constructor was called!" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& other)
 :type_(other.type_)
 {
-	std::cout << "the WrongAnimal copy constructor called!!" << std::endl;
-	return ;
+	std::cout << "WrongAnimal copy constructor was called!" << std::endl;
 }
 
 WrongAnimal&	WrongAnimal::operator=(const WrongAnimal& rhs)
@@ -24,17 +22,21 @@ WrongAnimal&	WrongAnimal::operator=(const WrongAnimal& rhs)
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "the WrongAnimal destructor called!!" << std::endl;
-	return ;
+	std::cout << "WrongAnimal destructor was called!" << std::endl;
 }
 
 void	WrongAnimal::makeSound(void) const
 {
-	std::cout << "An WrongAnimal made a sound." << std::endl;
-	return ;
+	std::cout << "An wronganimal made a sound." << std::endl;
 }
 
-const std::string&	WrongAnimal::getType(void) const
+std::string	WrongAnimal::getType(void) const
 {
 	return (type_);
+}
+
+WrongAnimal::WrongAnimal(const std::string& type)
+:type_(type)
+{
+	std::cout << "WrongAnimal parameterized was called!" << std::endl;
 }

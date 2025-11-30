@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/07 19:24:02 by ikawamuk          #+#    #+#              #
-#    Updated: 2025/11/02 10:05:39 by ikawamuk         ###   ########.fr        #
+#    Created: 2025/10/07 23:35:07 by ikawamuk          #+#    #+#              #
+#    Updated: 2025/11/24 22:35:25 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,18 +15,18 @@
 # ---------------------------------------------------------------------------- #
 
 # --- EXECUTABLE NAMES ---
-NAME	= main
+NAME	=	main
 
 # --- SOURCES ---
 SRC_FILES	=	main.cpp \
-				AAnimal.cpp \
-				Dog.cpp \
-				Cat.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp \
-				Brain.cpp \
+				AMateria.cpp \
+				Ice.cpp \
+				Cure.cpp \
+				Character.cpp \
+				MateriaSource.cpp \
+				Floor.cpp \
 
-SRCS	= $(addprefix $(SRCDIR)/,$(SRC_FILES))
+SRCS	= $(foreach file, $(SRC_FILES), $(shell find $(SRCDIR) -name $(file)))
 
 # --- DIRECTORIES ---
 SRCDIR		= .
@@ -35,7 +35,7 @@ INCDIRS		= include
 
 # --- COMPILER & FLAGS ---
 CXX			= c++
-CXXFLAGS	= -Wall -Werror -Wextra -std=c++98 -pedantic-errors
+CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 AR			= ar
 ARFLAGS		= rcs
 
@@ -47,6 +47,7 @@ RMDIR	= rm -rf
 OBJS	= $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
 # --- DEBUGGING ---
+DEBUG_FLUG		= -DDEBUG
 VALGRIND		= valgrind
 VALGRIND_FLAGS	= --leak-check=full --track-origins=yes --show-leak-kinds=all
 DFLAGS 			= -g -O0
@@ -64,10 +65,6 @@ TEST_OBJS	= $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SRCS))
 
 # --- MAIN TARGETS ---
 all: $(NAME)
-
-# --- EXECUTE TARGETS ---
-run: re
-	./$(NAME)
 
 # --- EXECUTABLE BUILDING ---
 $(NAME): $(OBJS)
@@ -88,11 +85,13 @@ fclean: clean
 	@$(RM) $(NAME)
 	@echo "\033[1;31mAll cleaned.\033[0m"
 
-re: fclean
-	$(MAKE) all
+re: fclean all
 
 # --- DEBUGGING & TESTING ---
 debug: fclean
+	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(DEBUG_FLUG)" $(NAME)
+
+lldb: fclean
 	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(DFLAGS)" $(NAME)
 	@echo "\n\033[1;35mLaunching LLDB for '$(NAME)'...\033[0m"
 	@lldb $(NAME)
@@ -100,8 +99,8 @@ debug: fclean
 asan: fclean
 	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(ASAN_FLAGS)" \
 	LDFLAGS="$(ASAN_FLAGS)" $(NAME)
-	@echo "\n\033[1;35mCompiled with AddressSanitizer.\033[0m"
-	./$(NAME)
+	@echo "\n\033[1;35mCompiled with AddressSanitizer. \
+	Run './$(NAME)' to test.\033[0m"
 
 valgrind: fclean
 	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(DFLAGS)" $(NAME)

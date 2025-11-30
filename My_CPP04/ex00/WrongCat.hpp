@@ -1,16 +1,15 @@
-#ifndef WRONGWrongCat_HPP_
-# define WRONGWrongCat_HPP_
+#ifndef WRONGCAT_HPP_
+# define WRONGCAT_HPP_
 
 #include "WrongAnimal.hpp"
-#include <string>
 
 class WrongCat: public WrongAnimal
 {
 	public:
-		WrongCat(const std::string& type = "WrongCat");
+		WrongCat(void);
 		WrongCat(const WrongCat& other);
 		WrongCat&	operator=(const WrongCat& rhs);
-		virtual ~WrongCat();
+		~WrongCat();
 		void	makeSound(void) const;
 };
 

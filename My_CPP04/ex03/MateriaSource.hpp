@@ -1,20 +1,24 @@
 #ifndef MATERIASOURCE_HPP_
 # define MATERIASOURCE_HPP_
 
+#include "IMateriaSource.hpp"
 #include "AMateria.hpp"
-#include <string>
 
-class IMateriaSource
+class MateriaSource: public IMateriaSource
 {
 	public:
-	virtual ~IMateriaSource() {}
-	virtual void learnMateria(AMateria*) = 0;
-	virtual AMateria* createMateria(std::string const & type) = 0;
-};
+		MateriaSource(void);
+		MateriaSource(const MateriaSource& other);
+		MateriaSource&	operator=(const MateriaSource& rhs);
+		~MateriaSource();
+		void learnMateria(AMateria*);
+		AMateria* createMateria(std::string const & type);
 
-class MateriaSource
-{
-
+	private:
+		static const int	SLOT_SIZE = 4;
+		AMateria			*templates_[SLOT_SIZE];
+		void	delete_stock(void);
+		void	copy_stock(const MateriaSource& src);
 };
 
 #endif

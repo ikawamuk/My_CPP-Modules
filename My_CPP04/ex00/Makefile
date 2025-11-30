@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/07 19:24:02 by ikawamuk          #+#    #+#              #
-#    Updated: 2025/11/02 10:05:22 by ikawamuk         ###   ########.fr        #
+#    Created: 2025/10/07 23:35:07 by ikawamuk          #+#    #+#              #
+#    Updated: 2025/11/14 06:38:54 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 # ---------------------------------------------------------------------------- #
 
 # --- EXECUTABLE NAMES ---
-NAME	= main
+NAME	=	main
 
 # --- SOURCES ---
 SRC_FILES	=	main.cpp \
@@ -25,7 +25,7 @@ SRC_FILES	=	main.cpp \
 				WrongAnimal.cpp \
 				WrongCat.cpp \
 
-SRCS	= $(addprefix $(SRCDIR)/,$(SRC_FILES))
+SRCS	= $(foreach file, $(SRC_FILES), $(shell find $(SRCDIR) -name $(file)))
 
 # --- DIRECTORIES ---
 SRCDIR		= .
@@ -34,7 +34,7 @@ INCDIRS		= include
 
 # --- COMPILER & FLAGS ---
 CXX			= c++
-CXXFLAGS	= -Wall -Werror -Wextra -std=c++98 -pedantic-errors
+CXXFLAGS	= -Wall -Werror -Wextra -std=c++98
 AR			= ar
 ARFLAGS		= rcs
 
@@ -64,10 +64,6 @@ TEST_OBJS	= $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(TEST_SRCS))
 # --- MAIN TARGETS ---
 all: $(NAME)
 
-# --- EXECUTE TARGETS ---
-run: re
-	./$(NAME)
-
 # --- EXECUTABLE BUILDING ---
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
@@ -87,8 +83,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@echo "\033[1;31mAll cleaned.\033[0m"
 
-re: fclean
-	$(MAKE) all
+re: fclean all
 
 # --- DEBUGGING & TESTING ---
 debug: fclean
@@ -99,8 +94,8 @@ debug: fclean
 asan: fclean
 	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(ASAN_FLAGS)" \
 	LDFLAGS="$(ASAN_FLAGS)" $(NAME)
-	@echo "\n\033[1;35mCompiled with AddressSanitizer.\033[0m"
-	./$(NAME)
+	@echo "\n\033[1;35mCompiled with AddressSanitizer. \
+	Run './$(NAME)' to test.\033[0m"
 
 valgrind: fclean
 	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(DFLAGS)" $(NAME)

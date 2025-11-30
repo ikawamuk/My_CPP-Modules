@@ -1,20 +1,20 @@
 #include "Dog.hpp"
 #include <iostream>
 
-Dog::Dog(const std::string& type)
-:Animal(type)
+Dog::Dog(void)
+:Animal("Dog"), brain_p_(new Brain())
 {
-	std::cout << "the Dog default constructor called!!" << std::endl;
-	brain_ = new Brain();
-	return ;
+	std::cout << GREEN;
+	std::cout << "Dog default constructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 Dog::Dog(const Dog& other)
-:Animal(other)
+:Animal(other), brain_p_(new Brain(*other.brain_p_))
 {
-	std::cout << "the Dog copy constructor called!!" << std::endl;
-	brain_ = new Brain();
-	return ;
+	std::cout << GREEN;
+	std::cout << "Dog copy constructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 Dog&	Dog::operator=(const Dog& rhs)
@@ -22,25 +22,27 @@ Dog&	Dog::operator=(const Dog& rhs)
 	if (this != &rhs)
 	{
 		Animal::operator=(rhs);
-		brain_ = rhs.brain_;
+		*brain_p_ = *rhs.brain_p_;
 	}
 	return (*this);
 }
 
 Dog::~Dog()
 {
-	std::cout << "the Dog destructor called!!" << std::endl;
-	delete brain_;
-	return ;
+	std::cout << GREEN;
+	std::cout << "Dog destructor was called!" << std::endl;
+	std::cout << RESET;
+	delete brain_p_;
 }
 
 void	Dog::makeSound(void) const
 {
-	std::cout << "bow-wow" << std::endl;
+	std::cout << "bow wow" << "...(" << brain_p_->get_newst_idea() << ")" << std::endl;
 	return ;
 }
 
-Brain&	Dog::brain(void)
+void	Dog::think(const std::string& idea)
 {
-	return (*brain_);
+	brain_p_->add_idea(idea + "!");
+	return ;
 }

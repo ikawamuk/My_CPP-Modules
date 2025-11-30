@@ -1,18 +1,20 @@
 #include "Animal.hpp"
 #include <iostream>
 
-Animal::Animal(const std::string& type)
-:type_(type)
+Animal::Animal(void)
+:type_("Animal")
 {
-	std::cout << "the Animal default constructor called!!" << std::endl;
-	return ;
+	std::cout << RED;
+	std::cout << "Animal default constructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 Animal::Animal(const Animal& other)
 :type_(other.type_)
 {
-	std::cout << "the Animal copy constructor called!!" << std::endl;
-	return ;
+	std::cout << RED;
+	std::cout << "Animal copy constructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 Animal&	Animal::operator=(const Animal& rhs)
@@ -24,17 +26,25 @@ Animal&	Animal::operator=(const Animal& rhs)
 
 Animal::~Animal()
 {
-	std::cout << "the Animal destructor called!!" << std::endl;
-	return ;
+	std::cout << RED;
+	std::cout << "Animal destructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 void	Animal::makeSound(void) const
 {
 	std::cout << "An animal made a sound." << std::endl;
-	return ;
 }
 
-const std::string&	Animal::getType(void) const
+std::string	Animal::getType(void) const
 {
 	return (type_);
+}
+
+Animal::Animal(const std::string& type)
+:type_(type)
+{
+	std::cout << RED;
+	std::cout << "Animal parameterized was called!" << std::endl;
+	std::cout << RESET;
 }

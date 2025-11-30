@@ -1,16 +1,20 @@
 #include "Cat.hpp"
 #include <iostream>
 
-Cat::Cat(const std::string& type)
-:Animal(type)
+Cat::Cat(void)
+:Animal("Cat")
 {
-	std::cout << "the Cat default constructor called!!" << std::endl;
+	std::cout << YELLOW;
+	std::cout << "Cat default constructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 Cat::Cat(const Cat& other)
 :Animal(other)
 {
-	std::cout << "the Cat copy constructor called!!" << std::endl;
+	std::cout << YELLOW;
+	std::cout << "Cat copy constructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 Cat&	Cat::operator=(const Cat& rhs)
@@ -22,11 +26,12 @@ Cat&	Cat::operator=(const Cat& rhs)
 
 Cat::~Cat()
 {
-	std::cout << "the Cat destructor called!!" << std::endl;
+	std::cout << YELLOW;
+	std::cout << "Cat destructor was called!" << std::endl;
+	std::cout << RESET;
 }
 
 void	Cat::makeSound(void) const
 {
 	std::cout << "meow" << std::endl;
-	return ;
 }

@@ -2,15 +2,14 @@
 # define DOG_HPP_
 
 #include "Animal.hpp"
-#include <string>
 
 class Dog: public Animal
 {
 	public:
-		Dog(const std::string& type = "Dog");
+		Dog(void);
 		Dog(const Dog& other);
 		Dog&	operator=(const Dog& rhs);
-		virtual ~Dog();
+		~Dog();
 		void	makeSound(void) const;
 };
 

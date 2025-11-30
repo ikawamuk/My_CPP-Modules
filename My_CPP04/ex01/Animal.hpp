@@ -2,18 +2,22 @@
 # define ANIMAL_HPP_
 
 #include <string>
+#include "print_color.hpp"
 
 class Animal
 {
 	public:
-		Animal(const std::string& type = "Animal");
+		Animal(void);
 		Animal(const Animal& other);
 		Animal&	operator=(const Animal& rhs);
 		virtual ~Animal();
 		virtual void	makeSound(void) const;
-		const std::string&	getType(void) const;
+		std::string		getType(void) const;
 
 	protected:
+		Animal(const std::string& type);
+
+	private:
 		std::string	type_;
 };
 
