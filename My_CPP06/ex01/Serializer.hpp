@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 22:37:02 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/15 20:03:31 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/16 18:29:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Serializer
 		Serializer(void);
 		Serializer(const Serializer& other);
 		Serializer&	operator=(const Serializer& rhs);
-		virtual ~Serializer() = 0;
+		~Serializer();
 };
 
 #endif
