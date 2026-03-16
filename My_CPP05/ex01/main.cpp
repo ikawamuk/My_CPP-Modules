@@ -1,0 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/12 08:03:01 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/14 15:43:23 by ikawamuk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <iostream>
+#include <exception>
+
+void		form_test(void);
+static void	fo_construct_test(const std::string& name, int sign_grade, int exe_grade);
+static void	sign_test(void);
+
+int	main(void)
+{
+	form_test();
+	std::cout << "----" << std::endl;
+	sign_test();
+	std::cout << "\nEnd." << std::endl;
+}
+
+void	form_test(void)
+{
+	fo_construct_test("TaxReturn", 1, 150);
+	fo_construct_test("TaxReturn", 0, 150);
+	fo_construct_test("TaxReturn", 1, 151);
+}
+
+void	sign_test(void)
+{
+	Bureaucrat	br1("Bob1", 101);
+	Bureaucrat	br2("Bob2", 102);
+	Form		fo("TaxReturn", 100, 101);
+
+	std::cout << br1 << std::endl;
+	br1.signForm(fo);
+	br1.promote();
+	br1.signForm(fo);
+	std::cout << "----" << std::endl;
+	std::cout << br2 << std::endl;
+	br2.signForm(fo);
+	br2.promote();
+	br2.signForm(fo);
+}
+
+static void	fo_construct_test(const std::string& name, int sign_grade, int exe_grade)
+{
+	try
+	{
+		Form	br(name, sign_grade, exe_grade);
+		std::cout << br << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << "Exception Caught!\n";
+	}
+}
