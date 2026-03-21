@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 22:09:34 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/21 19:49:45 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:43:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,30 @@
 #include <deque>
 #include <iostream>
 
-template <typename T>
-static T	generate_odds_sequencial(void)
+namespace
 {
-	T	c;
+	template <typename T>
+	T	generate_odds_sequencial(void)
+	{
+		T	c;
+	
+		for (int n = 0; n < 10; ++n)
+			c.push_back(n * 2 + 1);
+		return (c);
+	}
 
-	for (int n = 0; n < 10; ++n)
-		c.push_back(n * 2 + 1);
-	return (c);
-}
-
-template <typename T>
-static void	sequencial_containnor_test(int value)
-{
-	// const T	c = generate_odds_sequencial<T>();
-	T	c = generate_odds_sequencial<T>();
-
-	typename T::const_iterator i = easyfind<T>(c, value);
-	if (i != c.end())
-		std::cout << "found:" << *i << std::endl;
-	else
-		std::cout << "not found" << std::endl;
+	template <typename T>
+	void	sequencial_containnor_test(int value)
+	{
+		// const T	c = generate_odds_sequencial<T>();
+		T	c = generate_odds_sequencial<T>();
+	
+		typename T::const_iterator i = easyfind<T>(c, value);
+		if (i != c.end())
+			std::cout << "found:" << *i << std::endl;
+		else
+			std::cout << "not found" << std::endl;
+	}
 }
 
 int	main(int argc, char *argv[])

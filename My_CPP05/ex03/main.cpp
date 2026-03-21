@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 08:03:01 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/14 20:18:09 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:39:29 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 #include <iostream>
 #include <exception>
 
-void		test_intern(void);
-static void	use_intern(const std::string &form_name, const std::string &target);
+namespace
+{
+	void		test_intern(void);
+	void	use_intern(const std::string &form_name, const std::string &target);
+}
 
 int	main(void)
 {
@@ -24,19 +27,22 @@ int	main(void)
 	std::cout << "\nEnd." << std::endl;
 }
 
-void	test_intern(void)
+namespace
 {
-	use_intern("shrubbery creation", "Bob");
-	use_intern("robotomy request", "Bob");
-	use_intern("presidential pardon", "Bob");
-}
-
-static void	use_intern(const std::string &form_name, const std::string &target)
-{
-	Intern someRandomIntern;
-	AForm* rrf = someRandomIntern.makeForm(form_name, target);
-	Bureaucrat	br("Bob", 1);
-	br.signForm(*rrf);
-	br.executeForm(*rrf);
-	delete rrf;
+	void	test_intern(void)
+	{
+		use_intern("shrubbery creation", "Bob");
+		use_intern("robotomy request", "Bob");
+		use_intern("presidential pardon", "Bob");
+	}
+	
+	void	use_intern(const std::string &form_name, const std::string &target)
+	{
+		Intern someRandomIntern;
+		AForm* rrf = someRandomIntern.makeForm(form_name, target);
+		Bureaucrat	br("Bob", 1);
+		br.signForm(*rrf);
+		br.executeForm(*rrf);
+		delete rrf;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 20:41:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/16 18:07:43 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:41:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 #include <iomanip>
 #include <cctype>
 
-static bool	is_nan(double d);
-static bool	is_inf(double d);
-static void	error_case(void);
-static void	convert_to_char(double value);
-static void	convert_to_int(double value);
-static void	convert_to_float(double value);
-static void	convert_to_double(double value);
+namespace
+{
+	bool	is_nan(double d);
+	bool	is_inf(double d);
+	void	error_case(void);
+	void	convert_to_char(double value);
+	void	convert_to_int(double value);
+	void	convert_to_float(double value);
+	void	convert_to_double(double value);
+}
 
 void	ScalarConverter::convert(const std::string& str)
 {
@@ -41,77 +44,80 @@ void	ScalarConverter::convert(const std::string& str)
 	convert_to_double(value);
 }
 
-static void	error_case(void)
+namespace
 {
-	std::cout << "char: impossible" <<std::endl;
-	std::cout << "int: impossible" <<std::endl;
-	std::cout << "float: impossible" <<std::endl;
-	std::cout << "double: impossible" <<std::endl;
-}
-
-static void	convert_to_char(double value)
-{
-	std::cout << "char: ";
-	if (is_nan(value) || is_inf(value))
+	void	error_case(void)
 	{
-		std::cout << "impossible" << std::endl;
-		return ;
+		std::cout << "char: impossible" <<std::endl;
+		std::cout << "int: impossible" <<std::endl;
+		std::cout << "float: impossible" <<std::endl;
+		std::cout << "double: impossible" <<std::endl;
 	}
-	char	c = static_cast<char>(value);
-	if (std::isprint(static_cast<int>(c)))
-		std::cout << "'" << c << "'" << std::endl;
-	else
-		std::cout << "Non displayable" << std::endl;
-}
-
-static void	convert_to_int(double value)
-{
-	std::cout << "int: ";
-	if (is_nan(value) || is_inf(value))
+	
+	void	convert_to_char(double value)
 	{
-		std::cout << "impossible" << std::endl;
-		return ;
+		std::cout << "char: ";
+		if (is_nan(value) || is_inf(value))
+		{
+			std::cout << "impossible" << std::endl;
+			return ;
+		}
+		char	c = static_cast<char>(value);
+		if (std::isprint(static_cast<int>(c)))
+			std::cout << "'" << c << "'" << std::endl;
+		else
+			std::cout << "Non displayable" << std::endl;
 	}
-	std::cout << static_cast<int>(value) << std::endl;
-}
-
-static void	convert_to_float(double value)
-{
-	static const int SIG_FIGS = 7;
-	std::streamsize default_p = std::cout.precision();
-	std::cout << std::setprecision(SIG_FIGS);
-	std::cout << "float: ";
-	if (is_inf(value) && value > 0)
-		std::cout << "+";
-	std::cout << static_cast<float>(value);
-	if (static_cast<float>(value) == static_cast<long>(value))
-		std::cout << ".0";
-	std::cout << "f" << std::endl;
-	std::cout << std::setprecision(default_p);
-}
-
-static void	convert_to_double(double value)
-{
-	static const int SIG_FIGS = 15;
-	std::streamsize default_p = std::cout.precision();
-	std::cout << std::setprecision(SIG_FIGS);
-	std::cout << "double: ";
-	if (is_inf(value) && value > 0)
-		std::cout << "+";
-	std::cout << value;
-	if (value == static_cast<long>(value))
-		std::cout << ".0";
-	std::cout << std::endl;
-	std::cout << std::setprecision(default_p);
-}
-
-static bool	is_nan(double d)
-{
-	return (d != d);
-}
-
-static bool	is_inf(double d)
-{
-	return (d == std::numeric_limits<double>::infinity() || 
-			d == -std::numeric_limits<double>::infinity());
+	
+	void	convert_to_int(double value)
+	{
+		std::cout << "int: ";
+		if (is_nan(value) || is_inf(value))
+		{
+			std::cout << "impossible" << std::endl;
+			return ;
+		}
+		std::cout << static_cast<int>(value) << std::endl;
+	}
+	
+	void	convert_to_float(double value)
+	{
+		static const int SIG_FIGS = 7;
+		std::streamsize default_p = std::cout.precision();
+		std::cout << std::setprecision(SIG_FIGS);
+		std::cout << "float: ";
+		if (is_inf(value) && value > 0)
+			std::cout << "+";
+		std::cout << static_cast<float>(value);
+		if (static_cast<float>(value) == static_cast<long>(value))
+			std::cout << ".0";
+		std::cout << "f" << std::endl;
+		std::cout << std::setprecision(default_p);
+	}
+	
+	void	convert_to_double(double value)
+	{
+		static const int SIG_FIGS = 15;
+		std::streamsize default_p = std::cout.precision();
+		std::cout << std::setprecision(SIG_FIGS);
+		std::cout << "double: ";
+		if (is_inf(value) && value > 0)
+			std::cout << "+";
+		std::cout << value;
+		if (value == static_cast<long>(value))
+			std::cout << ".0";
+		std::cout << std::endl;
+		std::cout << std::setprecision(default_p);
+	}
+	
+	bool	is_nan(double d)
+	{
+		return (d != d);
+	}
+	
+	bool	is_inf(double d)
+	{
+		return (d == std::numeric_limits<double>::infinity() || 
+				d == -std::numeric_limits<double>::infinity());
+	}
 }

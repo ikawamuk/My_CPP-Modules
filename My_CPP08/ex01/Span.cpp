@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 19:56:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/21 21:55:48 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:49:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,26 @@
 #include <algorithm>
 #include <numeric>
 
-static void	throw_if_store_less_than_two(const std::vector<int> store);
+namespace
+{
+	template <typename T, typename Itr>
+	T	generate_sorted(const Itr& begin, const Itr& end)
+	{
+		T	sorted = T(begin, end);
+		std::sort(sorted.begin(), sorted.end());
+		return (sorted);
+	}
+
+	template <typename T, typename Itr>
+	T	generate_difference_sequence(const Itr& begin, const Itr& end)
+	{
+		T	diffs = T(begin, end);
+		std::adjacent_difference(begin, end, diffs.begin());
+		return (diffs);
+	}
+
+	void	throw_if_store_less_than_two(const std::vector<int> store);
+}
 
 Span::Span(void)
 :N_(), store_()
@@ -58,22 +77,6 @@ void	Span::addNumber(int value)
 	store_.push_back(value);
 }
 
-template <typename T, typename Itr>
-static T	generate_sorted(const Itr& begin, const Itr& end)
-{
-	T	sorted = T(begin, end);
-	std::sort(sorted.begin(), sorted.end());
-	return (sorted);
-}
-
-template <typename T, typename Itr>
-static T	generate_difference_sequence(const Itr& begin, const Itr& end)
-{
-	T	diffs = T(begin, end);
-	std::adjacent_difference(begin, end, diffs.begin());
-	return (diffs);
-}
-
 unsigned long	Span::shortestSpan(void) const
 {
 	throw_if_store_less_than_two(store_);
@@ -88,8 +91,11 @@ unsigned long	Span::longestSpan(void) const
 	return (*std::max_element(store_.begin(), store_.end()) - *std::min_element(store_.begin(), store_.end()));
 }
 
-static void	throw_if_store_less_than_two(const std::vector<int> store)
+namespace
 {
-	if (store.size() < 2)
-		throw std::logic_error("Not enough elements");
+	void	throw_if_store_less_than_two(const std::vector<int> store)
+	{
+		if (store.size() < 2)
+			throw std::logic_error("Not enough elements");
+	}
 }

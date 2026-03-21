@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 08:03:01 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/12 10:16:27 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:33:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 #include <iostream>
 #include <exception>
 
-static void	construct_test(const std::string& name, int grade);
-static void	promot_test(Bureaucrat br);
-static void	demot_test(Bureaucrat br);
+namespace
+{
+	void	construct_test(const std::string& name, int grade);
+	void	promot_test(Bureaucrat br);
+	void	demot_test(Bureaucrat br);
+}
 
 int	main(void)
 {
@@ -38,45 +41,48 @@ int	main(void)
 	std::cout << "\nEnd." << std::endl;
 }
 
-static void	promot_test(Bureaucrat br)
+namespace
 {
-	try
+	void	promot_test(Bureaucrat br)
 	{
-		std::cout << "Before: " << br << std::endl;
-		br.promote();
-		std::cout << "After: " << br << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Exception Caught!\n";
-	}
-	std::cout << std::endl;
-}
-
-static void	demot_test(Bureaucrat br)
-{
-	try
-	{
-		std::cout << "Before: " << br << std::endl;
-		br.demote();
-		std::cout << "After: " << br << std::endl;
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Exception Caught!\n";
-	}
-	std::cout << std::endl;
-}
-
-static void	construct_test(const std::string& name, int grade)
-{
 		try
 		{
-			Bureaucrat	br(name, grade);
-			std::cout << br << std::endl;
+			std::cout << "Before: " << br << std::endl;
+			br.promote();
+			std::cout << "After: " << br << std::endl;
 		}
 		catch (std::exception& e)
 		{
 			std::cout << "Exception Caught!\n";
 		}
+		std::cout << std::endl;
 	}
+	
+	void	demot_test(Bureaucrat br)
+	{
+		try
+		{
+			std::cout << "Before: " << br << std::endl;
+			br.demote();
+			std::cout << "After: " << br << std::endl;
+		}
+		catch (std::exception& e)
+		{
+			std::cout << "Exception Caught!\n";
+		}
+		std::cout << std::endl;
+	}
+	
+	void	construct_test(const std::string& name, int grade)
+	{
+			try
+			{
+				Bureaucrat	br(name, grade);
+				std::cout << br << std::endl;
+			}
+			catch (std::exception& e)
+			{
+				std::cout << "Exception Caught!\n";
+			}
+		}
+}

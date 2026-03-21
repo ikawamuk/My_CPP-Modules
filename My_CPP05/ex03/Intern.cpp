@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:10:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/14 19:54:56 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:38:42 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
 
-static AForm	*new_ShrubberyCreationForm(const std::string& target);
-static AForm	*new_RobotomyRequestForm(const std::string& target);
-static AForm	*new_PresidentialPardonForm(const std::string& target);
-
-static const FormTable	table[] = {
-	{"shrubbery creation", new_ShrubberyCreationForm},
-	{"robotomy request", new_RobotomyRequestForm},
-	{"presidential pardon", new_PresidentialPardonForm}
-};
+namespace
+{
+	AForm	*new_ShrubberyCreationForm(const std::string& target);
+	AForm	*new_RobotomyRequestForm(const std::string& target);
+	AForm	*new_PresidentialPardonForm(const std::string& target);
+	
+	const FormTable	table[] = {
+		{"shrubbery creation", new_ShrubberyCreationForm},
+		{"robotomy request", new_RobotomyRequestForm},
+		{"presidential pardon", new_PresidentialPardonForm}
+	};
+}
 
 AForm	*Intern::makeForm(const std::string& form_name, const std::string& target) const
 {
@@ -41,17 +44,20 @@ AForm	*Intern::makeForm(const std::string& form_name, const std::string& target)
 	return (0);
 }
 
-static AForm	*new_ShrubberyCreationForm(const std::string& target)
+namespace
 {
-	return (new ShrubberyCreationForm(target));
-}
+	AForm	*new_ShrubberyCreationForm(const std::string& target)
+	{
+		return (new ShrubberyCreationForm(target));
+	}
 
-static AForm	*new_RobotomyRequestForm(const std::string& target)
-{
-	return (new RobotomyRequestForm(target));
-}
+	AForm	*new_RobotomyRequestForm(const std::string& target)
+	{
+		return (new RobotomyRequestForm(target));
+	}
 
-static AForm	*new_PresidentialPardonForm(const std::string& target)
-{
-	return (new PresidentialPardonForm(target));
+	AForm	*new_PresidentialPardonForm(const std::string& target)
+	{
+		return (new PresidentialPardonForm(target));
+	}
 }
