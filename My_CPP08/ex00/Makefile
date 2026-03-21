@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/07 23:35:07 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/16 19:18:10 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/21 19:44:44 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,8 +84,6 @@ re: fclean
 # --- DEBUGGING & TESTING ---
 debug: fclean
 	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(DFLAGS)" $(NAME)
-	@echo "\n\033[1;35mLaunching LLDB for '$(NAME)'...\033[0m"
-	@lldb $(NAME)
 
 asan: fclean
 	@$(MAKE) CXXFLAGS="$(CXXFLAGS) $(ASAN_FLAGS)" \
