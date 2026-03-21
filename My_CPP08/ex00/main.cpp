@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 22:09:34 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/21 19:48:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/21 19:49:45 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static T	generate_odds_sequencial(void)
 template <typename T>
 static void	sequencial_containnor_test(int value)
 {
-	const T	c = generate_odds_sequencial<T>();
+	// const T	c = generate_odds_sequencial<T>();
+	T	c = generate_odds_sequencial<T>();
 
 	typename T::const_iterator i = easyfind<T>(c, value);
 	if (i != c.end())
@@ -40,7 +41,7 @@ static void	sequencial_containnor_test(int value)
 
 int	main(int argc, char *argv[])
 {
-	const int	value = argc >= 2 ? std::atoi(argv[1]) : 1;
+	const int	value = argc >= 2 ? std::atoi(argv[1]) : 0;
 
 	sequencial_containnor_test<std::vector<int> >(value);
 	sequencial_containnor_test<std::list<int> >(value);
