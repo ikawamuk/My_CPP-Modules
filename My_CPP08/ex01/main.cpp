@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 21:10:18 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/21 22:19:21 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/21 22:20:49 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static void	test_add_number(void)
 		std::cerr << e.what() << std::endl;
 	}
 	span.addNumber(111);
+	span.addNumber(112);
 	std::cout << "store[0]: " << span.store().at(0) << std::endl;
+	std::cout << "store[1]: " << span.store().at(1) << std::endl;
 }
 
 static void	test_spans(void)
