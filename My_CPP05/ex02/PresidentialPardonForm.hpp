@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 10:46:00 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/14 19:03:03 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:58:17 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class PresidentialPardonForm: public AForm
 {
 	public:
-		PresidentialPardonForm(const std::string& target);
+		explicit PresidentialPardonForm(const std::string& target);
 		~PresidentialPardonForm();
 		void	execute(Bureaucrat const & executor) const;
 		const std::string&	target(void) const;

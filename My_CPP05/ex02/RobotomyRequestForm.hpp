@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:10:11 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/14 19:03:09 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:58:23 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class RobotomyRequestForm: public AForm
 {
 	public:
-		RobotomyRequestForm(const std::string& target);
+		explicit RobotomyRequestForm(const std::string& target);
 		~RobotomyRequestForm();
 		void	execute(Bureaucrat const & executor) const;
 		const std::string&	target(void) const;

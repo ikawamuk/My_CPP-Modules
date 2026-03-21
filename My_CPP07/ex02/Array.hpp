@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 20:00:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/20 22:08:52 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:55:46 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Array
 {
 	public:
 					Array(void);
-					Array(unsigned int n);
+					explicit Array(unsigned int n);
 					Array(const Array& other);
 		Array&		operator=(const Array& rhs);
 					~Array();

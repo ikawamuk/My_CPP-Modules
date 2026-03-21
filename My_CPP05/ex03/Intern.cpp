@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:10:35 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/22 01:38:42 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 02:04:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,24 @@ namespace
 	};
 }
 
-AForm	*Intern::makeForm(const std::string& form_name, const std::string& target) const
+Intern::Intern(void)
+{}
+
+Intern::Intern(const Intern& other)
+{
+	(void)other;
+}
+
+Intern&	Intern::operator=(const Intern& rhs)
+{
+	(void)rhs;
+	return (*this);
+}
+
+Intern::~Intern()
+{}
+
+AForm	*Intern::makeForm(const std::string& form_name, const std::string& target)
 {
 	for (std::size_t i = 0; i < sizeof(table) / sizeof(table[0]); i++)
 	{

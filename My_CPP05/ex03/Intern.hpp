@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 12:49:40 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/14 19:54:45 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 02:04:09 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@
 class Intern
 {
 	public:
-		AForm	*makeForm(const std::string& form_name, const std::string& target) const;
+		Intern(void);
+		Intern(const Intern& other);
+		Intern&	operator=(const Intern& rhs);
+		~Intern();
+		static AForm	*makeForm(const std::string& form_name, const std::string& target);
 };
 
 struct FormTable

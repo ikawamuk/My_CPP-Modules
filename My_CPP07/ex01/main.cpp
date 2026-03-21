@@ -6,12 +6,18 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 19:42:33 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/16 19:57:21 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:55:07 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
-#include "test_template.hpp"
+# include <iostream>
+
+template <typename T>
+void	print_T_address(const T& val)
+{
+	std::cout << "argument's adddress: " << &val << std::endl;
+}
 
 int	main(void)
 {

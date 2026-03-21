@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 19:51:40 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/21 22:04:33 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:53:50 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Span
 {
 	public:
 		Span(void);
-		Span(const unsigned int n);
+		explicit Span(const unsigned int n);
 		Span(const Span& other);
 		Span&	operator=(const Span& rhs);
 		~Span();

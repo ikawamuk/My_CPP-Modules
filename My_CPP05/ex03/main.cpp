@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 08:03:01 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/22 01:39:29 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/22 01:59:46 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 namespace
 {
-	void		test_intern(void);
+	void	test_intern(void);
 	void	use_intern(const std::string &form_name, const std::string &target);
 }
 
