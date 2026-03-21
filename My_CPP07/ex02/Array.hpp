@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 20:00:21 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/16 21:22:02 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/20 22:08:52 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ class Array
 
 template <typename T>
 Array<T>::Array(void)
-: elements_(NULL), size_(0)
-{
-}
+:elements_(NULL), size_(0)
+{}
 
 template <typename T>
 Array<T>::Array(unsigned int n)
-: elements_(NULL), size_(n)
+:elements_(NULL), size_(n)
 {
 	if (n == 0)
 		return;
@@ -51,7 +50,7 @@ Array<T>::Array(unsigned int n)
 
 template <typename T>
 Array<T>::Array(const Array& other)
-: elements_(NULL), size_(other.size_)
+:elements_(NULL), size_(other.size_)
 {
 	if (size_ == 0)
 		return;
