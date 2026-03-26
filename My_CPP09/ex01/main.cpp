@@ -6,15 +6,14 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/25 21:37:14 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/25 21:31:32 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <map>
+
 
 int	main(void)
 {
-	// map
-	std::map<int, int> a;
+	// stack
 	return (0);
 }
