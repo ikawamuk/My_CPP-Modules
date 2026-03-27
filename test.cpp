@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DataFile.hpp                                       :+:      :+:    :+:   */
+/*   test.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/27 19:49:09 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 20:26:25 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/27 05:29:46 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/27 19:16:14 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATAFILE_HPP_
-# define DATAFILE_HPP_
+#include <iostream>
 
-# include <string>
-# include <fstream>
-
-class DataFile
+int	main(void)
 {
-	public:
-		explicit DataFile(const std::string& file_name);
-		~DataFile();
-		std::string	name(void) const;
-		bool		get_line(std::string& buf);
-	private:
-		DataFile(void);
-		DataFile(const DataFile& other);
-		DataFile&	operator=(const DataFile& rhs);
-		std::string		name_;
-		std::ifstream	ifs_;
-};
-
-#endif
+	std::string	token;
+	while (std::getline(std::cin, token, ','))
+	{
+		std::cout << token << std::endl;
+	}
+}
