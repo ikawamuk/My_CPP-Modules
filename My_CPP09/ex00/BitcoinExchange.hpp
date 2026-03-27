@@ -6,28 +6,30 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 04:56:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 06:18:13 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/27 20:25:14 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BITCOINEXCHANGE_HPP_
 # define BITCOINEXCHANGE_HPP_
 
-# include "Date.hpp"
+# include "DataBase.hpp"
+# include "DataFile.hpp"
+# include <fstream>
 # include <string>
-# include <map>
 
 class BitcoinExchange
 {
 	public:
-		BitcoinExchange(const std::string& db_file_name);
+		explicit BitcoinExchange(DataFile& data_file);
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange&	operator=(const BitcoinExchange& rhs);
 		~BitcoinExchange();
-		void	execute(const std::string& input_file_name) const;
+		void		execute(const std::string& input_file_name) const;
+		DataBase	data_base(void) const;
 	private:
 		BitcoinExchange(void);
-		std::map<Date, double>	data_base_;
+		DataBase	data_base_;
 };
 
 #endif

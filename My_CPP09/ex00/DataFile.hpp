@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DataFile.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 18:44:05 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/27 19:49:09 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/27 20:26:25 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-#include <iostream>
+#ifndef DATAFILE_HPP_
+# define DATAFILE_HPP_
 
-int	main(int argc, char *argv[])
+# include <string>
+# include <fstream>
+
+class DataFile
 {
-	if (argc < 2)
-	{
-		std::cerr << "input a file" << std::endl;
-		return (1);
-	}
-	try
-	{
-		BitcoinExchange	btc_exchange("data.csv");
-		btc_exchange.execute(argv[1]);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-		return (1);
-	}
-	return (0);
-}
+	public:
+		explicit DataFile(const std::string& file_name);
+		~DataFile();
+		std::string	name(void) const;
+		bool		get_line(std::string& buf);
+	private:
+		DataFile(void);
+		DataFile(const DataFile& other);
+		DataFile&	operator=(const DataFile& rhs);
+		std::string		name_;
+		std::ifstream	ifs_;
+};
+
+#endif
