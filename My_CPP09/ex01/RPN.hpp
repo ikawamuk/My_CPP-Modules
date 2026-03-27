@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 08:30:50 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/28 06:39:16 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/28 07:55:54 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RPN.hpp"
-#include <iostream>
+#ifndef RPN_HPP_
+# define RPN_HPP_
 
-int	main(int argc, char *argv[])
-{
-	if (argc < 2)
-	{
-		std::cerr << "input expression in reverse polish notation" <<std::endl;
-		return (1);
-	}
-	try
-	{
-		std::cout << rpn(argv[1]) << std::endl;
-		return (0);
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-		return (1);
-	}
-}
+# include <string>
+
+long	rpn(const std::string& expr);
+
+#endif
