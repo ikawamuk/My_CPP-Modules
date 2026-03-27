@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 00:05:48 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 06:13:20 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/28 06:14:54 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 namespace
 {
 	std::map<time_t, double>	build_data_base(std::ifstream& ifs);
-	std::pair<std::time_t, double>	parse_row(std::string row);
+	std::pair<std::time_t, double>	parse_csv_row(std::string row);
 	std::time_t	parse_date(std::string date_str);
 	std::string	convert_date_to_str(std::time_t date);
 	double	parse_rate(std::string rate_str);
@@ -124,7 +124,7 @@ namespace
 		{
 			try
 			{
-				std::pair<const time_t, double> element = parse_row(row);
+				std::pair<const time_t, double> element = parse_csv_row(row);
 				std::map<time_t, double>::iterator it = data_base.find(element.first);
 				if (it == data_base.end())
 					data_base.insert(element);
@@ -139,7 +139,7 @@ namespace
 		return (data_base);
 	}
 
-	std::pair<std::time_t, double>	parse_row(std::string row)
+	std::pair<std::time_t, double>	parse_csv_row(std::string row)
 	{
 		std::stringstream	ss(row);
 		const std::time_t	date = parse_date(trim(get_csv_item(ss)));
