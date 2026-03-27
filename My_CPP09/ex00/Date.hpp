@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 05:07:19 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 22:31:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/27 23:40:22 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <ostream>
+# include <ctime>
 
 class Date
 {
@@ -24,15 +25,16 @@ class Date
 		Date(const Date& other);
 		Date&	operator=(const Date& rhs);
 		~Date();
-		unsigned int	year(void) const;
-		unsigned int	month(void) const;
-		unsigned int	day(void) const;
+		time_t	time(void) const;
+		std::string	to_str(void) const;
 	private:
-		unsigned int	year_;
-		unsigned int	month_;
-		unsigned int	day_;
+		time_t	time_;
 };
 
 std::ostream&	operator<<(std::ostream& os, const Date& date);
+bool			operator<(const Date& lhs, const Date& rhs);
+bool	operator>(const Date& lhs, const Date& rhs);
+bool	operator>=(const Date& lhs, const Date& rhs);
+bool	operator<=(const Date& lhs, const Date& rhs);
 
 # endif

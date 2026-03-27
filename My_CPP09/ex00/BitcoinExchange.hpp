@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 04:56:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 20:25:14 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/27 23:35:01 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class BitcoinExchange
 		DataBase	data_base(void) const;
 	private:
 		BitcoinExchange(void);
+		double		get_rate(const Date& date) const;
 		DataBase	data_base_;
 };
 

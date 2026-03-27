@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:49:06 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 20:21:28 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/27 23:40:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ namespace
 }
 
 DataFile::DataFile(const std::string& csv_file_name)
-:name_(csv_file_name), ifs_(csv_file_name)
+:name_(csv_file_name), ifs_(csv_file_name.c_str())
 {
 	if (!is_csv_extention(name_))
 		throw std::runtime_error("Only CSV files are allowed");

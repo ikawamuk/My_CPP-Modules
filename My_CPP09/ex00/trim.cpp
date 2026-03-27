@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   trim.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 23:32:55 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/27 23:28:06 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/27 23:28:44 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-#include "DataFile.hpp"
-#include <iostream>
+#include <string>
 
-int	main(int argc, char *argv[])
+std::string	trim(const std::string& s)
 {
-	if (argc < 2)
-	{
-		std::cerr << "input a file" << std::endl;
-		return (1);
-	}
-	try
-	{
-		DataFile	data_file("data.csv");
-		BitcoinExchange	btc_exchange(data_file);
-		btc_exchange.execute(argv[1]);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-		return (1);
-	}
-	return (0);
+	size_t first = s.find_first_not_of(" \t\r\n");
+	if (first == std::string::npos)
+		return "";
+	size_t last = s.find_last_not_of(" \t\r\n");
+	return s.substr(first, (last - first + 1));
 }

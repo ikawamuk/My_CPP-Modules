@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:51:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 22:25:51 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/27 23:36:39 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "DataFile.hpp"
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
+#include <limits>
+
+std::string	trim(const std::string& s);
 
 namespace
 {
@@ -21,7 +25,6 @@ namespace
 	std::pair<Date, double>	parse_row(const std::string& line);
 	Date	parse_date(std::stringstream& ss);
 	double	parse_exchange_rate(std::stringstream& ss);
-	std::string	trim(const std::string& s);
 }
 
 DataBase::DataBase(DataFile& data_file)
@@ -37,14 +40,41 @@ DataBase::DataBase(DataFile& data_file)
 			continue ;
 		try
 		{
-			db_.insert(parse_row(line));
+			rates_by_date_.insert(parse_row(line));
 		}
-		catch (std::invalid_argument&)
+		catch (std::invalid_argument& e)
 		{
 			std::cerr << data_file.name() << ":";
-			std::cerr << row_count << ": invalid line" << std::endl;
+			std::cerr << row_count << ": " << e.what() << std::endl;
 		}
 	}
+}
+
+DataBase::DataBase(const DataBase& other)
+:rates_by_date_(other.rates_by_date_)
+{}
+
+DataBase&	DataBase::operator=(const DataBase& rhs)
+{
+	if (this != &rhs)
+		rates_by_date_ = rhs.rates_by_date_;
+	return (*this);
+}
+
+DataBase::~DataBase()
+{}
+
+std::map<Date, double>	DataBase::rates_by_date() const
+{
+	return (rates_by_date_);
+}
+
+double	DataBase::find(const Date& date) const
+{
+	std::map<Date, double>::const_iterator	it = rates_by_date_.find(date);
+	if (it != rates_by_date_.end())
+		return (it->second);
+	return (std::numeric_limits<double>::quiet_NaN());
 }
 
 namespace
@@ -62,15 +92,7 @@ namespace
 		std::string	date_str;
 
 		std::getline(ss, date_str, ',');
-		try
-		{
-			Date date(date_str);
-			return (date);
-		}
-		catch (std::invalid_argument& e)
-		{
-			throw std::invalid_argument("invalid date format");
-		}
+		return (Date(date_str));
 	}
 
 	double	parse_exchange_rate(std::stringstream& ss)
@@ -81,7 +103,7 @@ namespace
 
 		std::getline(ss, exchange_rate_str, ',');
 		exchange_rate = std::strtod(exchange_rate_str.c_str(), &endp);
-		if (endp)
+		if (*endp)
 			throw std::invalid_argument("invalid exchange_rate format");
 		return (exchange_rate);
 	}
@@ -91,14 +113,5 @@ namespace
 		std::string	head_line;
 		data_file.get_line(head_line);
 		return (trim(head_line) == "date,exchange_rate");
-	}
-
-	std::string	trim(const std::string& s)
-	{
-		size_t first = s.find_first_not_of(" \t\r\n");
-		if (first == std::string::npos)
-			return "";
-		size_t last = s.find_last_not_of(" \t\r\n");
-		return s.substr(first, (last - first + 1));
 	}
 }
