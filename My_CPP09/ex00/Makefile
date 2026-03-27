@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/07 23:35:07 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/21 19:44:44 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/27 04:55:05 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 # ---------------------------------------------------------------------------- #
 
 # --- EXECUTABLE NAMES ---
-NAME	=	main
+NAME	=	btc
 
 # --- SOURCES ---
 SRC_FILES	=	main.cpp \

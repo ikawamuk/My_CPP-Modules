@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Date.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 05:05:37 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/27 05:07:19 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/27 05:12:33 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-#include <iostream>
+#ifndef DATE_HPP_
+# define DATE_HPP_
 
-int	main(int argc, char *argv[])
+# include <string>
+
+class Date
 {
-	if (argc < 2)
-	{
-		std::cerr << "input a file" << std::endl;
-		return (1);
-	}
-	BitcoinExchange	btc_exchange("data.csv");
-	return (0);
-}
+	public:
+		Date(void);
+		Date(const std::string& date);
+		Date(const Date& other);
+		Date&	operator=(const Date& rhs);
+		~Date();
+	private:
+		unsigned int	year;
+		unsigned char	month;
+		unsigned char	day;
+};
+
+# endif

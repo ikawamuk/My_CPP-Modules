@@ -1,25 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Date.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 05:05:37 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/27 05:07:17 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/27 05:07:18 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-#include <iostream>
-
-int	main(int argc, char *argv[])
-{
-	if (argc < 2)
-	{
-		std::cerr << "input a file" << std::endl;
-		return (1);
-	}
-	BitcoinExchange	btc_exchange("data.csv");
-	return (0);
-}
