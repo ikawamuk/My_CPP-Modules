@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 19:51:55 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/27 22:20:39 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/27 22:25:51 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ namespace
 {
 	bool	validate_table_header(DataFile& data_file);
 	std::pair<Date, double>	parse_row(const std::string& line);
+	Date	parse_date(std::stringstream& ss);
+	double	parse_exchange_rate(std::stringstream& ss);
 	std::string	trim(const std::string& s);
 }
 
@@ -37,7 +39,7 @@ DataBase::DataBase(DataFile& data_file)
 		{
 			db_.insert(parse_row(line));
 		}
-		catch (...)
+		catch (std::invalid_argument&)
 		{
 			std::cerr << data_file.name() << ":";
 			std::cerr << row_count << ": invalid line" << std::endl;
@@ -47,7 +49,6 @@ DataBase::DataBase(DataFile& data_file)
 
 namespace
 {
-	
 	std::pair<Date, double>	parse_row(const std::string& row)
 	{
 		std::stringstream	ss(row);
@@ -68,7 +69,7 @@ namespace
 		}
 		catch (std::invalid_argument& e)
 		{
-			throw std::runtime_error("invalid date format");
+			throw std::invalid_argument("invalid date format");
 		}
 	}
 
@@ -80,8 +81,8 @@ namespace
 
 		std::getline(ss, exchange_rate_str, ',');
 		exchange_rate = std::strtod(exchange_rate_str.c_str(), &endp);
-		if (exchange_rate_str == endp)
-			throw ;
+		if (endp)
+			throw std::invalid_argument("invalid exchange_rate format");
 		return (exchange_rate);
 	}
 
