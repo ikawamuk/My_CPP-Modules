@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 00:05:23 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 00:10:47 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/28 03:45:56 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <map>
+# include <ctime>
 
 class BitcoinExchange
 {
@@ -26,7 +27,7 @@ class BitcoinExchange
 		void	execute(const std::string& input_file_name) const;
 	private:
 		BitcoinExchange(void);
-		std::map<time_t, double>	data_base_;
+		std::map<std::time_t, double>	data_base_;
 };
 
 #endif

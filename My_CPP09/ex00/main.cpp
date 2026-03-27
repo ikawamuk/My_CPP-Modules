@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 00:05:05 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 00:12:16 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/28 04:12:10 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char *argv[])
 	try
 	{
 		BitcoinExchange	btc("data.csv");
-
 		btc.execute(argv[1]);
 		return (EXIT_SUCCESS);
 	}

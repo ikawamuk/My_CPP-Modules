@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/07 23:35:07 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/28 00:04:53 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/03/28 03:47:19 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ NAME	=	btc
 
 # --- SOURCES ---
 SRC_FILES	=	main.cpp \
+				BitcoinExchange.cpp \
 
-SRCS	= $(foreach file, $(SRC_FILES), $(shell find $(SRCDIR) -name $(file)))
+SRCS	= $(addprefix $(SRCDIR)/,$(SRC_FILES))
 
 # --- DIRECTORIES ---
 SRCDIR		= .
