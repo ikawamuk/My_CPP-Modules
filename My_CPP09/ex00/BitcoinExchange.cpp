@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 00:05:48 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 06:09:36 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/28 06:13:20 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	BitcoinExchange::execute(const std::string& input_file_name) const
 		std::size_t pos = line.find(sep);
 		if (pos == std::string::npos)
 		{
-			std::cerr << "Error: bad input => " << line << std::endl;
+			std::cout << "Error: bad input => " << line << std::endl;
 			continue ;
 		}
 		std::string date_str = line.substr(0, pos);
@@ -87,7 +87,7 @@ void	BitcoinExchange::execute(const std::string& input_file_name) const
 			double		value = parse_value(value_str);
 			std::map<std::time_t, double>::const_iterator it = data_base_.upper_bound(date);
 			if (it == data_base_.begin())
-				throw std::runtime_error("Error: no data available for this date or any earlier date.");
+				throw std::runtime_error("no data available for this date or any earlier date.");
 			--it;
 			std::cout << convert_date_to_str(date) << " => " << it->second * value << std::endl;
 		}
@@ -133,7 +133,7 @@ namespace
 			}
 			catch (std::invalid_argument& e)
 			{
-				std::cerr << "error:data file:" << e.what() << std::endl;
+				std::cout << "error:data file:" << e.what() << std::endl;
 			}
 		}
 		return (data_base);
