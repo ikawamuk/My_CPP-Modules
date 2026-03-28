@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 12:32:05 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/28 09:43:05 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/03/28 12:35:16 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PmergeMe.hpp"
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <exception>
+#ifndef PMERGEME_HPP_
+# define PMERGEME_HPP_
 
-int	main(int argc, char *argv[])
+# include <vector>
+# include <list>
+
+class PmergeMe
 {
-	if (argc < 2)
-	{
-		std::cerr << "input positive integer sequence." << std::endl;
-		return (1);
-	}
-	try
-	{
-		PmergeMe	pmerge(argv + 1, argc - 1);
-		pmerge.execute();
-		return (0);
-	}
-	catch (std::exception&)
-	{
-		std::cerr << "Error" << std::endl;
-		return (1);
-	}
-}
+	public:
+		PmergeMe(void);
+		PmergeMe(char **int_strs, int size);
+		PmergeMe(const PmergeMe& other);
+		PmergeMe&	operator=(const PmergeMe& rhs);
+		~PmergeMe();
+		void	execute(void);
+	private:
+		char	**str_arr_;
+		int		size_;
+		
+};
+
+#endif
