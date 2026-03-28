@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 09:43:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 12:53:51 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/28 13:01:11 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,6 @@ void	PmergeMe::execute(void)
 	<< "elements with std::vector : " << vector_time << " us" << std::endl;
 	std::cout << "Time to process a range of " << size_ 
 	<< "elements with std::list : " << list_time << " us" << std::endl;
-}
- 
-void	sort(std::vector<int>& vector)
-{
-	std::sort(vector.begin(), vector.end());
+	delete[] sequence;
 }
 
-void	sort(std::list<int>& list)
-{
-	list.sort();
-}
