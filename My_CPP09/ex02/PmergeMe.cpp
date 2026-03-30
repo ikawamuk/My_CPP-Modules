@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 09:43:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/28 13:01:11 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/03/30 17:18:12 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	*convert_to_int_arr(char **str_arr, int size)
 }
 
 template <typename SequenceContainer>
-double	measure_sorting(char **str_arr, int size)
+double	measure_sorting_time(char **str_arr, int size)
 {
 	struct timeval start, end;
 	gettimeofday(&start, NULL);
@@ -88,9 +88,9 @@ PmergeMe::~PmergeMe()
 
 void	PmergeMe::execute(void)
 {
-	double	vector_time = measure_sorting<std::vector<int> >(str_arr_, size_);
-	double	list_time = measure_sorting<std::list<int> >(str_arr_, size_);
-	int	*sequence = convert_to_int_arr(str_arr_, size_);
+	double	vector_time = measure_sorting_time<std::vector<int> >(str_arr_, size_);
+	double	list_time = measure_sorting_time<std::list<int> >(str_arr_, size_);
+	int		*sequence = convert_to_int_arr(str_arr_, size_);
 	std::cout << "Before:\t";
 	write_sequence(sequence, sequence + size_);
 	std::sort(sequence, sequence + size_);
