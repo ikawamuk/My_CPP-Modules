@@ -6,13 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 13:01:02 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/04/01 05:06:06 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/01 05:16:03 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector>
-#include <list>
-
+#include <algorithm>
 
 /*
 比較回数カウントするか？
@@ -46,8 +45,6 @@ namespace
 	void		sort_recursive(std::vector<Element*>& vector);
 }
 
-#include <algorithm>
-#include <iostream>
 void	sort(std::vector<int>& vector)
 {
 	std::vector<Element*>	sorting_vector;
@@ -57,7 +54,6 @@ void	sort(std::vector<int>& vector)
 	vector.clear();
 	for (std::vector<Element*>::iterator it = sorting_vector.begin(); it != sorting_vector.end(); ++it)
 	{
-		std::cout << "final value:" << (*it)->value_ << std::endl;
 		vector.push_back((*it)->value_);
 		delete *it;
 	}
@@ -65,11 +61,11 @@ void	sort(std::vector<int>& vector)
 
 namespace
 {
-	void	print_vector(std::vector<Element*> v)
-	{
-		for (std::vector<Element*>::iterator it = v.begin(); it != v.end(); ++it)
-			std::cout << "velue:" << (*it)->value_ << std::endl;
-	}
+	//void	print_vector(std::vector<Element*> v)
+	//{
+	//	for (std::vector<Element*>::iterator it = v.begin(); it != v.end(); ++it)
+	//		std::cerr << "velue:" << (*it)->value_ << std::endl;
+	//}
 
 	namespace
 	{
@@ -92,7 +88,6 @@ namespace
 			return ;
 		std::vector<Element*>	winners = play_tournament(vector);
 		sort_recursive(winners);
-		print_vector(winners);
 		std::vector<Element*>	losers = build_losers(winners, vector);
 		merge(winners, losers);
 		vector = winners;
@@ -180,80 +175,80 @@ namespace
 	}
 }
 
-#include <stdexcept>
-#include <iostream>
-#include <cstdlib>
+//#include <stdexcept>
+//#include <iostream>
+//#include <cstdlib>
 
-void	sort(std::vector<int>& vector);
-void	sort(std::list<int>& list);
-template <typename Container>
-void test_sort(Container c)
-{
-	sort(c);
-	for (typename Container::iterator it = c.begin(); it != c.end(); ++it)
-	{
-		typename Container::iterator	next = it;
-		++next;
-		if (next == c.end())
-			break;
-		if (*it > *next)
-			throw std::logic_error("sort function is incorrect");
-	}
-}
+//void	sort(std::vector<int>& vector);
+//void	sort(std::list<int>& list);
+//template <typename Container>
+//void test_sort(Container c)
+//{
+//	sort(c);
+//	for (typename Container::iterator it = c.begin(); it != c.end(); ++it)
+//	{
+//		typename Container::iterator	next = it;
+//		++next;
+//		if (next == c.end())
+//			break;
+//		if (*it > *next)
+//			throw std::logic_error("sort function is incorrect");
+//	}
+//}
 
-void	test_sort_vector(int *sequence, int size)
-{
-	try
-	{
-		test_sort<std::vector<int> >(std::vector<int>(sequence, sequence + size));
-	}
-	catch(const std::exception&)
-	{
-		std::cerr << "void	sort(std::vector<int>&) is wrong" << std::endl;
-		throw ;
-	}
-	std::cout << "vector OK" << std::endl;
-}
+//void	test_sort_vector(int *sequence, int size)
+//{
+//	try
+//	{
+//		test_sort<std::vector<int> >(std::vector<int>(sequence, sequence + size));
+//	}
+//	catch(const std::exception&)
+//	{
+//		std::cerr << "void	sort(std::vector<int>&) is wrong" << std::endl;
+//		throw ;
+//	}
+//	std::cout << "vector OK" << std::endl;
+//}
 
-void	test_sort_list(int *sequence, int size)
-{
-	try
-	{
-		test_sort<std::list<int> >(std::list<int>(sequence, sequence + size));
-	}
-	catch(const std::exception&)
-	{
-		std::cerr << "void	sort(std::list<int>&) is wrong" << std::endl;
-		throw ;
-	}
-	std::cout << "list OK" << std::endl;
-}
+//void	test_sort_list(int *sequence, int size)
+//{
+//	try
+//	{
+//		test_sort<std::list<int> >(std::list<int>(sequence, sequence + size));
+//	}
+//	catch(const std::exception&)
+//	{
+//		std::cerr << "void	sort(std::list<int>&) is wrong" << std::endl;
+//		throw ;
+//	}
+//	std::cout << "list OK" << std::endl;
+//}
 
-int		*convert_to_int_arr(char **str_arr, int size);
-void	test(int numbers[], int size);
-int	main(int argc, char *argv[])
-{
-	for (int size = 1; size < 100; ++size)
-	{
-		int	*numbers = new int[size];
-		for (int i = 0; i < size; ++i)
-			numbers[i] = std::rand() % 101;
-		test(numbers, size);
-		delete[] numbers;
-	}
-}
+//int		*convert_to_int_arr(char **str_arr, int size);
+//void	test(int numbers[], int size);
+//int	main(void)
+//{
+//	for (int size = 1; size < 100; ++size)
+//	{
+//		int	*numbers = new int[size];
+//		for (int i = 0; i < size; ++i)
+//			numbers[i] = std::rand() % 101;
+//		test(numbers, size);
+//		delete[] numbers;
+//	}
+//}
 
-void	test(int numbers[], int size)
-{
-	try
-	{
-		test_sort_vector(numbers, size);
-		test_sort_list(numbers, size);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-		return ;
-	}
-	std::cout << "[OK] size:" << size << std::endl;
-}
+//void	test(int numbers[], int size)
+//{
+//	try
+//	{
+//		test_sort_vector(numbers, size);
+//		test_sort_list(numbers, size);
+//	}
+//	catch(const std::exception& e)
+//	{
+//		std::cerr << e.what() << '\n';
+//		return ;
+//	}
+//	std::cout << "[OK] size:" << size << std::endl;
+//}
