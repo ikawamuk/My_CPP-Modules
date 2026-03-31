@@ -6,7 +6,7 @@
 #    By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/07 23:35:07 by ikawamuk          #+#    #+#              #
-#    Updated: 2026/03/30 17:48:08 by ikawamuk         ###   ########.fr        #
+#    Updated: 2026/04/01 02:56:46 by ikawamuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ NAME	=	PmergeMe
 # --- SOURCES ---
 SRC_FILES	=	main.cpp \
 				PmergeMe.cpp \
-				sort.cpp \
 				convert_to_int_arr.cpp \
+				sort_vector.cpp \
+				sort_list.cpp \
 
 SRCS	= $(foreach file, $(SRC_FILES), $(shell find $(SRCDIR) -name $(file)))
 

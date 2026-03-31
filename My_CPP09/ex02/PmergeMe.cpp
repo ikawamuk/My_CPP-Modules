@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 09:43:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/04/01 01:50:07 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/01 02:56:06 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ double	measure_sorting_time(char **str_arr, int size)
 	struct timeval start, end;
 	gettimeofday(&start, NULL);
 	int	*sequence = convert_to_int_arr(str_arr, size);
-	
 	SequenceContainer	c(sequence, sequence + size);
-	std::cerr << "ここにstd::cout << somethingを仕込むとbadallocなくなる\n";
 	sort(c);
 	delete[] sequence;
 	gettimeofday(&end, NULL);
@@ -76,7 +74,6 @@ PmergeMe::~PmergeMe()
 
 void	PmergeMe::execute(void)
 {
-	
 	double	vector_time = measure_sorting_time<std::vector<int> >(str_arr_, size_);
 	double	list_time = measure_sorting_time<std::list<int> >(str_arr_, size_);
 	int		*sequence = convert_to_int_arr(str_arr_, size_);
