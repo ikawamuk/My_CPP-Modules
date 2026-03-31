@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 09:43:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/30 17:18:12 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/01 01:50:07 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,7 @@
 
 void	sort(std::vector<int>& vector);
 void	sort(std::list<int>& list);
-
-int	*convert_to_int_arr(char **str_arr, int size)
-{
-	int *sequence = new int[size];
-	for (int i = 0; i < size; ++i)
-	{
-		sequence[i] = std::atoi(str_arr[i]);
-		if (sequence[i] < 0)
-		{
-			delete[] sequence;
-			throw std::invalid_argument("negative number is not valid");
-		}
-	}
-	return (sequence);
-}
+int		*convert_to_int_arr(char **str_arr, int size);
 
 template <typename SequenceContainer>
 double	measure_sorting_time(char **str_arr, int size)
@@ -41,9 +27,11 @@ double	measure_sorting_time(char **str_arr, int size)
 	struct timeval start, end;
 	gettimeofday(&start, NULL);
 	int	*sequence = convert_to_int_arr(str_arr, size);
+	
 	SequenceContainer	c(sequence, sequence + size);
-	delete[] sequence;
+	std::cerr << "ここにstd::cout << somethingを仕込むとbadallocなくなる\n";
 	sort(c);
+	delete[] sequence;
 	gettimeofday(&end, NULL);
 	long seconds = end.tv_sec - start.tv_sec;
 	long microseconds = end.tv_usec - start.tv_usec;
@@ -88,6 +76,7 @@ PmergeMe::~PmergeMe()
 
 void	PmergeMe::execute(void)
 {
+	
 	double	vector_time = measure_sorting_time<std::vector<int> >(str_arr_, size_);
 	double	list_time = measure_sorting_time<std::list<int> >(str_arr_, size_);
 	int		*sequence = convert_to_int_arr(str_arr_, size_);

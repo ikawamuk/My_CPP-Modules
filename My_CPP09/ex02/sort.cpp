@@ -6,12 +6,17 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 13:01:02 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/30 17:45:46 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/01 02:50:36 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector>
 #include <list>
+
+
+/*
+比較回数カウントするか？
+*/
 
 #include <algorithm>
 void	sort(std::vector<int>& vector)
@@ -24,15 +29,19 @@ void	sort(std::list<int>& list)
 	list.sort();
 }
 
-//
+
 //#include <stdexcept>
 //#include <iostream>
 //template <typename Container>
 //void test_sort(Container c)
 //{
 //	sort(c);
-//	if (!std::is_sorted(c.begin(), c.end())) {
-//		throw std::logic_error("sort function is incorrect");
+//	for (typename Container::iterator it = c.begin(); it != c.end(); ++it)
+//	{
+//		typename Container::iterator	next = it;
+//		++next;
+//		if (*it > *next)
+//			throw std::logic_error("sort function is incorrect");
 //	}
 //}
 
@@ -81,4 +90,4 @@ void	sort(std::list<int>& list)
 //	delete[] sequence;
 //	std::cout << "OK" << std::endl;
 //}
-//
+

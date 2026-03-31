@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   convert_to_int_arr.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 21:27:54 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/04/01 01:45:26 by ikawamuk         ###   ########.fr       */
+/*   Created: 2026/03/30 17:47:32 by ikawamuk          #+#    #+#             */
+/*   Updated: 2026/04/01 01:48:30 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PmergeMe.hpp"
-#include <iostream>
-#include <string>
 #include <cstdlib>
-#include <exception>
+#include <stdexcept>
+#include <iostream>
 
-int	main(int argc, char *argv[])
+int	*convert_to_int_arr(char **str_arr, int size)
 {
-	if (argc < 2)
+	int *sequence = new int[size];
+	
+	for (int i = 0; i < size; ++i)
 	{
-		std::cerr << "input positive integer sequence." << std::endl;
-		return (1);
+		sequence[i] = std::atoi(str_arr[i]);
+		if (sequence[i] < 0)
+		{
+			delete[] sequence;
+			throw std::invalid_argument("negative number is not valid");
+		}
 	}
-	try
-	{
-		PmergeMe	pmerge(argv + 1, argc - 1);
-		pmerge.execute();
-		return (0);
-	}
-	catch (std::exception& e)
-	{
-		std::cerr << "Error:" << e.what() << std::endl;
-		return (1);
-	}
+	return (sequence);
 }
