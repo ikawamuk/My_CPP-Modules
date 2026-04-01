@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ikawamuk <ikawamuk@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 21:10:18 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/03/22 01:46:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:25:41 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 namespace
 {
+	void	given_case(void);
+	void test_10000(void);
+
 	void	test_add_number(void)
 	{
 		Span	span(2);
