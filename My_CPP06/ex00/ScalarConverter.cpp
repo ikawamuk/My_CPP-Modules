@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 20:41:50 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/04/01 23:41:23 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/02 05:25:25 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ namespace
 	void	convert_to_int(double value);
 	void	convert_to_float(double value);
 	void	convert_to_double(double value);
+	double	special_float_strtod(const std::string& str);
 }
 
 void	ScalarConverter::convert(const std::string& str)
@@ -33,12 +34,8 @@ void	ScalarConverter::convert(const std::string& str)
 	const char	*str_head = str.c_str();
 	char		*endp;
 	double	value = std::strtod(str_head, &endp);
-	if (str == "inff" || str == "+inff")
-		value = std::numeric_limits<double>::infinity();
-	else if (str  == "-inff")
-		value = -std::numeric_limits<double>::infinity();
-	else if (str == "nanf")
-		value = std::numeric_limits<double>::quiet_NaN();
+	if (str == "inff" || str == "+inff" || str == "-inff" || str == "nanf")
+		value = special_float_strtod(str);
 	else if (str_head == endp || *endp != '\0')
 	{
 		error_case();
@@ -52,6 +49,19 @@ void	ScalarConverter::convert(const std::string& str)
 
 namespace
 {
+	double	special_float_strtod(const std::string& str)
+	{
+		double value = +0;
+
+		if (str == "inff" || str == "+inff")
+			value = std::numeric_limits<double>::infinity();
+		else if (str  == "-inff")
+			value = -std::numeric_limits<double>::infinity();
+		else if (str == "nanf")
+			value = std::numeric_limits<double>::quiet_NaN();
+		return (value);
+	}
+
 	void	error_case(void)
 	{
 		std::cout << "char: impossible" <<std::endl;
@@ -59,7 +69,7 @@ namespace
 		std::cout << "float: impossible" <<std::endl;
 		std::cout << "double: impossible" <<std::endl;
 	}
-	
+
 	void	convert_to_char(double value)
 	{
 		std::cout << "char: ";
@@ -74,7 +84,7 @@ namespace
 		else
 			std::cout << "Non displayable" << std::endl;
 	}
-	
+
 	void	convert_to_int(double value)
 	{
 		std::cout << "int: ";
