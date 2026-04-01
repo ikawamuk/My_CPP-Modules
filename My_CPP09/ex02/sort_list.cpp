@@ -6,16 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 05:16:56 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/04/01 17:01:07 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/02 06:29:27 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <list>
 #include <algorithm>
-
-/*
-比較回数カウントするか？
-*/
 
 namespace
 {
@@ -38,7 +34,7 @@ namespace
 		Element*	getPair(void) const { return (pairs_.back()); }
 		bool		hasPair(void) const { return (!pairs_.empty()); }
 		void		popPair(void) { pairs_.pop_back(); }
-		int						value_;
+		int					value_;
 		std::list<Element*>	pairs_;
 	};
 	Element*	generateElement(int value);
@@ -159,10 +155,8 @@ namespace
 			while (last_jacob < losers.size())
 			{
 				std::size_t	curr_jacob = J_seq.getNext();
-				for (std::size_t i = std::min(curr_jacob, losers.size()) - 1; last_jacob <= i; --i)
-				{
+				for (std::size_t i = std::min(curr_jacob, losers.size()) - 1; last_jacob - 1 < i; --i)
 					binary_insert(winners, list_at(losers, i));
-				}
 				last_jacob = curr_jacob;
 			}
 		}

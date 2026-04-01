@@ -6,16 +6,12 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 13:01:02 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/04/01 17:00:42 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/02 06:29:55 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector>
 #include <algorithm>
-
-/*
-比較回数カウントするか？
-*/
 
 namespace
 {
@@ -150,10 +146,8 @@ namespace
 			while (last_jacob < losers.size())
 			{
 				std::size_t	curr_jacob = J_seq.getNext();
-				for (std::size_t i = std::min(curr_jacob, losers.size()) - 1; last_jacob <= i; --i)
-				{
+				for (std::size_t i = std::min(curr_jacob, losers.size()) - 1; last_jacob - 1 < i; --i)
 					binary_insert(winners, losers.at(i));
-				}
 				last_jacob = curr_jacob;
 			}
 		}

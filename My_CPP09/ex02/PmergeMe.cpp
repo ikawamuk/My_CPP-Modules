@@ -6,7 +6,7 @@
 /*   By: ikawamuk <ikawamuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 09:43:41 by ikawamuk          #+#    #+#             */
-/*   Updated: 2026/04/01 02:56:06 by ikawamuk         ###   ########.fr       */
+/*   Updated: 2026/04/02 06:24:45 by ikawamuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,3 @@ void	PmergeMe::execute(void)
 	<< "elements with std::list : " << list_time << " us" << std::endl;
 	delete[] sequence;
 }
-
